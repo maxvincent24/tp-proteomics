@@ -37,13 +37,13 @@ Cette partie du TP est découpée en 4 grandes parties avec pour chacune des par
 ##### En quoi consiste l’approche Shotgun proteomics?
 
 ```
-
+L'approche Shotgun proteomics est un type d'approche bottom-up (les protéines sont digérées) en protéomique pour l'identification de protéines, par spectrométrie de masse.
 ```
 
 ##### Quel est l’objectif de cette approche ?
 
 ```
-
+Identifier des différences entre des échantillons pour tirer une information de biomarqueurs.
 ```
 
 #### Procédure
