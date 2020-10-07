@@ -37,13 +37,13 @@ Cette partie du TP est découpée en 4 grandes parties avec pour chacune des par
 ##### En quoi consiste l’approche Shotgun proteomics?
 
 ```
-
+L'approche Shotgun proteomics est un type d'approche bottom-up (les protéines sont digérées) en protéomique pour l'identification de protéines, par spectrométrie de masse.
 ```
 
 ##### Quel est l’objectif de cette approche ?
 
 ```
-
+Identifier des différences entre des échantillons pour tirer une information de biomarqueurs.
 ```
 
 #### Procédure
@@ -59,38 +59,49 @@ Cette partie du TP est découpée en 4 grandes parties avec pour chacune des par
 ##### L’identification des protéines/ peptides se réalise grâce à une base de données de protéines. Quelle comparaison va être effectuée?
 
 ```
-
+On compare les données expérimentales (peptides) au protéome d'E.coli (protéines) téléchargé sur Uniprot.
 ```
 
 ##### Existe t’il d’autres types de bases de données pour réaliser l’identification des peptides trypsiques dans un spectre?
 
 ```
-
+On peut utiliser des bases de données spectrales (avec des données de spectrométrie de masse) pour comparer nos données par homologie (avec des organismes proches).
 ```
 
 ##### Est-ce qu’il est possible d’identifier des peptides sans base de données?
-```
 
 ```
+Oui par homologie par exemple
+```
+
 ##### Combien de protéines sont identifiées dans le protéome bactérien?
-```
 
 ```
+4,391
+```
+
 ##### Comment la liste des séquences des protéines est-elle établie ? Est-elle complète? 
+
 ```
 
 ```
+
 ##### Quelle est la différence entre des séquences Swiss-prot et TremBL?
-```
 
 ```
-##### A quoi correspond la protéine P00761 et quelle est sa fonction ? 
+Swiss-prot est vérifié à la main
 ```
 
+##### À quoi correspond la protéine P00761 et quelle est sa fonction ? 
+
 ```
+Elle correspond à la trypsine, avec laquelle on a digéré la protéine.
+```
+
 ##### Pourquoi doit-on rajouter cette protéine dans le fichier FASTA final du protéome bactérien?
-```
 
+```
+La protéine a été digérée avec la trypsine donc il en reste dans l'éhantillon.
 ```
 
 ### Création de la « peak list »
@@ -300,8 +311,16 @@ Representer graphiquement les données d'abondance et construire la pvalue des f
 ##### 2. Representez par un histogramme les valeurs de `Log2 Corrected Abundance Ratio`
 
 ##### 3. A partir de cette échantillon de ratio d'abondance,  estimez la moyenne <img src="https://render.githubusercontent.com/render/math?math=\mu"> et l'ecart-type <img src="https://render.githubusercontent.com/render/math?math=\sigma"> d'une loi normale.
+```python
+# Estimation des paramètres d'une loi normale
+mu = np.mean(df_Log2)
+
+n = len(df_Log2)
+S_2 = n/(n-1) * np.std(df_Log2)
 ```
 
+```
+$mu = -0.6386262156443276$ et $S_2 = 0.47089421497585426$
 
 ```
 
@@ -316,13 +335,12 @@ scale = len(_)*dx # scale accordingly
 ax.plot(x, norm.pdf(x, mu, sqrt(S_2))*scale) # compute theoritical PDF and draw it
 ```
 
-![Histogramme à inserez ici](histogram_log2FC.png "Title")
+![Histogramme à inserez ici](assets/histogram_log2FC.png "Title")
 
 ##### 5. Quelles remarques peut-on faire à l'observation de l'histogramme et de loi théorique?
 
 ```
-
-
+On voit que la plupart des protéines sont surexprimées dans les conditions riches. Cela siginifie que les protéines sont moins exprimées qu'en présence de tétracycline.
 ```
 
 #### Construction d'un volcano plot
