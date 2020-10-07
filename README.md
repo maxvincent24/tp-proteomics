@@ -311,8 +311,16 @@ Representer graphiquement les données d'abondance et construire la pvalue des f
 ##### 2. Representez par un histogramme les valeurs de `Log2 Corrected Abundance Ratio`
 
 ##### 3. A partir de cette échantillon de ratio d'abondance,  estimez la moyenne <img src="https://render.githubusercontent.com/render/math?math=\mu"> et l'ecart-type <img src="https://render.githubusercontent.com/render/math?math=\sigma"> d'une loi normale.
+```python
+# Estimation des paramètres d'une loi normale
+mu = np.mean(df_Log2)
+
+n = len(df_Log2)
+S_2 = n/(n-1) * np.std(df_Log2)
 ```
 
+```
+$mu = -0.6386262156443276$ et $S_2 = 0.47089421497585426$
 
 ```
 
@@ -327,13 +335,12 @@ scale = len(_)*dx # scale accordingly
 ax.plot(x, norm.pdf(x, mu, sqrt(S_2))*scale) # compute theoritical PDF and draw it
 ```
 
-![Histogramme à inserez ici](histogram_log2FC.png "Title")
+![Histogramme à inserez ici](assets/histogram_log2FC.png "Title")
 
 ##### 5. Quelles remarques peut-on faire à l'observation de l'histogramme et de loi théorique?
 
 ```
-
-
+On voit que la plupart des protéines sont surexprimées dans les conditions riches. Cela siginifie que les protéines sont moins exprimées qu'en présence de tétracycline.
 ```
 
 #### Construction d'un volcano plot
