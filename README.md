@@ -59,38 +59,49 @@ Identifier des différences entre des échantillons pour tirer une information d
 ##### L’identification des protéines/ peptides se réalise grâce à une base de données de protéines. Quelle comparaison va être effectuée?
 
 ```
-
+On compare les données expérimentales (peptides) au protéome d'E.coli (protéines) téléchargé sur Uniprot.
 ```
 
 ##### Existe t’il d’autres types de bases de données pour réaliser l’identification des peptides trypsiques dans un spectre?
 
 ```
-
+On peut utiliser des bases de données spectrales (avec des données de spectrométrie de masse) pour comparer nos données par homologie (avec des organismes proches).
 ```
 
 ##### Est-ce qu’il est possible d’identifier des peptides sans base de données?
-```
 
 ```
+Oui par homologie par exemple
+```
+
 ##### Combien de protéines sont identifiées dans le protéome bactérien?
-```
 
 ```
+4,391
+```
+
 ##### Comment la liste des séquences des protéines est-elle établie ? Est-elle complète? 
+
 ```
 
 ```
+
 ##### Quelle est la différence entre des séquences Swiss-prot et TremBL?
-```
 
 ```
-##### A quoi correspond la protéine P00761 et quelle est sa fonction ? 
+Swiss-prot est vérifié à la main
 ```
 
+##### À quoi correspond la protéine P00761 et quelle est sa fonction ? 
+
 ```
+Elle correspond à la trypsine, avec laquelle on a digéré la protéine.
+```
+
 ##### Pourquoi doit-on rajouter cette protéine dans le fichier FASTA final du protéome bactérien?
-```
 
+```
+La protéine a été digérée avec la trypsine donc il en reste dans l'éhantillon.
 ```
 
 ### Création de la « peak list »
