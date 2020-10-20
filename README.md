@@ -37,13 +37,13 @@ Cette partie du TP est découpée en 4 grandes parties avec pour chacune des par
 ##### En quoi consiste l’approche Shotgun proteomics?
 
 ```
-L'approche Shotgun proteomics est un type d'approche bottom-up (les protéines sont digérées) en protéomique pour l'identification de protéines, par spectrométrie de masse.
+L'approche Shotgun proteomics est un type d'approche bottom-up (les protéines sont digérées) en protéomique pour l'identification de protéines, en combinant la chromatographie liquide et la spectrométrie de masse. On compare les masses peptidiques obtenues expérimentalement avec les valeurs de bases de données.
 ```
 
 ##### Quel est l’objectif de cette approche ?
 
 ```
-Identifier des différences entre des échantillons pour tirer une information de biomarqueurs.
+L'objectif est d'identifier les protéines des échantillons biologiques.
 ```
 
 #### Procédure
@@ -56,22 +56,22 @@ Identifier des différences entre des échantillons pour tirer une information d
 
 #### Questions
 
-##### L’identification des protéines/ peptides se réalise grâce à une base de données de protéines. Quelle comparaison va être effectuée?
+##### L’identification des protéines/peptides se réalise grâce à une base de données de protéines. Quelle comparaison va être effectuée?
 
 ```
 On compare les données expérimentales (peptides) au protéome d'E.coli (protéines) téléchargé sur Uniprot.
 ```
 
-##### Existe t’il d’autres types de bases de données pour réaliser l’identification des peptides trypsiques dans un spectre?
+##### Existe-t-il d’autres types de bases de données pour réaliser l’identification des peptides trypsiques dans un spectre?
 
 ```
-On peut utiliser des bases de données spectrales (avec des données de spectrométrie de masse) pour comparer nos données par homologie (avec des organismes proches).
+On peut utiliser des bases de données spectrales (avec des données de spectrométrie de masse).
 ```
 
 ##### Est-ce qu’il est possible d’identifier des peptides sans base de données?
 
 ```
-Oui par homologie par exemple
+Oui par homologie (avec des organismes proches) par exemple
 ```
 
 ##### Combien de protéines sont identifiées dans le protéome bactérien?
@@ -83,13 +83,13 @@ Oui par homologie par exemple
 ##### Comment la liste des séquences des protéines est-elle établie ? Est-elle complète? 
 
 ```
-
+Elles sont annotées à la main sur Swiss-Prot et in silico sur TremBL. Swiss-Prot est donc moins complet car c'est beaucoup plus long, mais plus fiable.
 ```
 
 ##### Quelle est la différence entre des séquences Swiss-prot et TremBL?
 
 ```
-Swiss-prot est vérifié à la main
+Les séquences sur Swiss-prot sont annotées à la main et in silico sur TremBL.
 ```
 
 ##### À quoi correspond la protéine P00761 et quelle est sa fonction ? 
@@ -101,7 +101,7 @@ Elle correspond à la trypsine, avec laquelle on a digéré la protéine.
 ##### Pourquoi doit-on rajouter cette protéine dans le fichier FASTA final du protéome bactérien?
 
 ```
-La protéine a été digérée avec la trypsine donc il en reste dans l'éhantillon.
+La protéine a été digérée avec la trypsine donc il en reste dans l'échantillon.
 ```
 
 ### Création de la « peak list »
@@ -125,7 +125,7 @@ De nombreux petits logiciels existent pour convertir vos fichiers bruts dans un 
 ##### Les données de QExactive ont été enregistrées en mode centroïde et non pas en mode Profiling. D’après vous quelle est la différence entre les deux modes?
 
 ```
-
+La différence entre les deux modes correspond au nombre de pics rendu sur le spectre. Le mode Profiling affiche tous les pics pour tous les isotopes d'un peptide multichargé, alors que le mode centroïde fait la moyenne de tous les isotopes et n'affiche qu'un pic.
 ```
 
 ### Identification des peptides par approche PSM Peptide to Spectrum Matching
@@ -147,29 +147,41 @@ NB : si vous avez des messages d’erreur qui s’affichent (missing precursor c
 
 #### Questions 
 ##### Pourquoi est-il important de bien choisir sa base de données?
+
 ```
+Il est important de bien choisir sa base de données car cela va changer le nombre de 'hits' après l'identification.
+Plus la base de données contient des séquences, plus le nombre de hits sera grand, mais il y aura plus de faux positifs.
 ```
+
 ##### Est-ce que l’on retrouvera toujours les mêmes protéines au cours du temps ?
+
 ```
+Non, les bases de données changent, les données ne sont pas les mêmes au cours du temps. C'est un souci pour la reproductabilité des résultats. Lors d'une manipulation, il faut bien noter la date.
 ```
 
 ##### Comment la taille de la base de données peut affecter le score de la protéine recherchée?
 ```
+Plus la base de données en grande, plus il y aura d'idenfications possibles, mais beaucoup auront des scores peu intéressants.
 ```
 
 ##### Est-ce que les modifications ajoutées sont les seules modifications que l’on peut attendre dans une expérience de shotgun proteomics?
 ```
+Non, on ajoute les modifications connus sur la protéine mais il s'agit d'échantillons biologiques, d'autres modifications de la protéine sont possibles : mauvais clivage de la trypsine, contamination de l’échantillon par d’autres protéines, modifications post-traductionnelles ou mutations de la protéine par rapport à la base de données.
 ```
 
 ##### Vous avez choisi la trypsine comme enzyme et choisi « specific », qu’est-ce que cela signifie, et comment cela peut affecter le processing ? 
 ```
+On dit que la trypsine est une endoprotéase spécifique car elle coupe seulement après deux acides aminés en particulier : lysine et arginine.
 ```
 
 ##### Qu’est-ce qu’un missed cleavage ? pourquoi 2 et pas 0 ?
 ```
+La trypsine peut rater un clivage au niveau d'une lysine ou d'une arginine, on appelle cela un miscleavage. On considère que la trypsine a des chances de réaliser un miscleavage au moins une fois, c'est pourquoi on tolère 2 miscleavages.
 ```
+
 ##### Qu’est-ce que la tolérance en masse, comment la calcule-t-on ?
 ```
+Il s'agit de l'écart en masse entre le peptide expérimental et le peptide identifié dans la base de données. Cette tolérance de masse en exprimée en Da ou ppm, et dépend de la calibration et de la résolution de l'appareil.
 ```
 
 ### Visualisation des PSM, peptides - protéines
